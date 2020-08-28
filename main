@@ -1,0 +1,102 @@
+import os
+import pyttsx3
+choices1 = ["chrome", "firefox", "notepad", "control panel", "explorer"]
+choices2 = ["youtube", "reddit", "instagram", "facebook", "gmail", "twitter", "google"]
+browser = ["chrome", "firefox"]
+
+print("\n\nTHIS CHAT BOT CAN HELP YOU OPEN BASIC APPLICATIONS\nFor ex: 'open instagram' or 'start firefox'\n'Stop or Exit to exit the chatbot'")
+while True:
+    A = 0
+    _choice = input("\nHey, What can i help you with? : ")
+    _choice = _choice.lower()
+    # code to change the voice of the pyttsx3
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[1].id)
+    for i in choices1:
+        if i in _choice:
+            os.system("start " + i)
+            pyttsx3.speak("Sure, opening " + i)
+            print ("Sure, opening " + i)
+            A=1
+            break
+
+    if A==0:
+        for i in choices2:         
+            if (i in _choice) or (_choice in i):
+                gm = input("Sure, In which browser you want me to open : ")
+                pyttsx3.speak("Sure! In which browser you want me to open ?")
+                gm = gm.lower()
+                for j in browser:
+                    if gm in j:
+                        print("Sure opening " + i)
+                        pyttsx3.speak("Sure opening " + i)
+                        os.system("start " + j + " " + i + ".com")
+                        A=1
+                        break
+
+    if A==0:
+        #windows media player done
+        if "wmplayer" in _choice or "musicplayer" in _choice or "start music player" in _choice:
+            print("Sure, opening windows media player")
+            pyttsx3.speak("Sure, opening windows media player")
+            os.system("start wmplayer")
+            A=1
+
+        #control panel done
+        elif ("settings" in _choice):
+            print("Sure, opening control panel.")
+            pyttsx3.speak("Sure, opening control panel.")
+            os.system("start control panel")
+            A=1
+
+        #some easter eggs done
+        elif ("fire" in _choice):
+            pyttsx3.speak("Do you want me to open firefox ?")
+            com_fire = input("Do you want me to open Firefox? : ")
+            com_fire = com_fire.lower()
+
+            if (com_fire == 'yes') or (com_fire == 'y'):
+                print("OK")
+                pyttsx3.speak("OK")
+                os.system("start firefox")
+                pyttsx3.speak("Anything else i can do for you let me know.")
+                A=1
+            else:
+                print("OK!, Sorry")
+                pyttsx3.speak("OK, Sorry")
+                A=1
+        elif (("i" in _choice and "am feeling" in _choice) and ("sad" in _choice)):
+            print("\nDont be sad \n Everything will be fine")
+            pyttsx3.speak("Dont be sad,   Everything will be fine")
+            print("Let me play some funny videos for you to watch")
+            pyttsx3.speak("Let me play some funny videos for you to watch")
+            os.system("start chrome https://www.youtube.com/watch?v=GG5DX9VVqgE")
+            pyttsx3.speak("here you go, thank me later")
+            A=1
+
+        elif (("i" in _choice and "am feeling" in _choice) and ("happy" in _choice or "great" in _choice)):
+            print("\nThats great, i am happy to hear that :D \n Here is a song i want you to listen, it will make you feel energetic")
+            pyttsx3.speak("Thats great, i am happy to hear that,   Here is a song i want you to listen, it will make you feel energetic")
+            os.system("start chrome https://www.youtube.com/watch?v=j8GSRFS-8tc")
+            pyttsx3.speak("enjoy")
+            A=1
+
+        elif ("hello" in _choice or "hi" in _choice or "namastey" in _choice):
+            print("Hello, Dear User, I am your personal 'chatbot', Chat with me and tell me what to do for you :D")
+            pyttsx3.speak("Hello, Dear User, I am your personal 'chatbot', Chat with me, and tell me what can i do for you")
+            A=1
+    
+        elif ("thanks" in _choice or "thank you" in _choice or "thankyou" in _choice):
+            print("Your Welcome")
+            pyttsx3.speak("Your Welcome, My friend")
+            A=1
+
+        #exit done
+        elif ("close" in _choice or "exit" in _choice or "stop" in _choice or "bye" in _choice):
+            print("Sure!, Thank you for using chatbot :D\nPROGRAM CREATED BY\n  SHUBH SHARMA")
+            pyttsx3.speak("Sure, Thank you for using chatbot,   This program was created by, Shubh Sharma, dont forget to follow him on insta gram and github")
+            break
+    if A==0:
+        print("Sorry Sir, I can not understand !!!1")
+        pyttsx3.speak("Sorry Sir, I can not understand !!!")
